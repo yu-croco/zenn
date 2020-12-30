@@ -98,3 +98,4 @@ Service Meshのユースケースにはざっくり以下のようなものが�
 - [Envoy (Envoy proxy)、Istio とは？](https://qiita.com/seikoudoku2000/items/9d54f910d6f05cbd556d)
 - [wikipedia Cloud Native Computing Foundation](https://ja.wikipedia.org/wiki/Cloud_Native_Computing_Foundation)
 - [Service Meshes](https://softwareengineeringdaily.com/2020/01/07/service-meshes/)
+- [Istioに入門する](https://techstep.hatenablog.com/entry/2020/12/26/112229)

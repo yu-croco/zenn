@@ -1,0 +1,12 @@
+---
+title: ""
+emoji: "📚"
+type: "tech" # tech: 技術記事 / idea: アイデア
+topics: ["Kubernetes", "ArgoCD"]
+published: false
+---
+
+## 参考
+- [Amazon EKSでのArgoCDを使ったGitOps CD](https://tech.recruit-mp.co.jp/infrastructure/gitops-cd-by-using-argo-cd-at-eks/)
+- [5 GitOps Best Practices](https://blog.argoproj.io/5-gitops-best-practices-d95cb0cbe9ff)
+- [Argo Project](https://blog.argoproj.io/)

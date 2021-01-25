@@ -10,8 +10,10 @@ published: true
 仕事でKubernetesを触ることになったのですが、それまでに予習としてインプットに活用させて頂いた情報源をまとめました（分類分けがかなり雑ですが、優しく見てください）。
 
 ## （個人的な）結論
-個人的にはYoutubeなどの動画（できるだけ最新の情報を観たほうが良いと思うので、2020年以降に配信されたものに限る）を見て（ハンズオンがあると尚良し）全体のイメージを掴んだ後に、 [Kubernetes完全ガイド impress top gearシリーズ](https://www.amazon.co.jp/Kubernetes%E5%AE%8C%E5%85%A8%E3%82%AC%E3%82%A4%E3%83%89-impress-top-gear%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA-%E9%9D%92%E5%B1%B1-ebook/dp/B07HFS7TDT/ref=sr_1_7?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=HY2PPELP1NG9&dchild=1&keywords=kubernetes&qid=1608947361&sprefix=kuberne%2Caps%2C280&sr=8-7) にざっと目を通す流れが良いと思いました。
-私の場合はその上で、使うクラウドインフラ特有の事項を調べたり、Kubernetesのセキュリティや裏側の具体的な挙動について深ぼる感じでやっていきました。
+Kubernetesについて調べ始めると、Kubernetes自体が大きなエコシステムであることと、それを取り巻くいろんなツールが出てきて、「どこから始めればいいんだ...」となりがちです（少なくとも僕はなりました...）。
+そこで個人的には、Youtubeなどの動画（Kubernetesは情報の行進が早いので、1年以内に配信されたものがオススメ。またハンズオンがあると尚良し。）を見てKubernetesの全体像を掴んだ後に、 [Kubernetes完全ガイド impress top gearシリーズ](https://www.amazon.co.jp/Kubernetes%E5%AE%8C%E5%85%A8%E3%82%AC%E3%82%A4%E3%83%89-impress-top-gear%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA-%E9%9D%92%E5%B1%B1-ebook/dp/B07HFS7TDT/ref=sr_1_7?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=HY2PPELP1NG9&dchild=1&keywords=kubernetes&qid=1608947361&sprefix=kuberne%2Caps%2C280&sr=8-7) にざっと目を通す流れが良いと思いました（詳細を覚えるのではなく、頭にインデックスるを作る感じ）。その上で使うクラウドインフラ特有の事項を調べたり、Kubernetesのセキュリティや裏側の具体的な挙動について深ぼる感じです。
+
+Kubernetesが「どんなことを目的に生まれたのか」、またそれを「どうやって実現しているか」の大枠をある程度理解してから詳細へと深ぼっていくことで、本質を見失わずに進んでいけるのかなと思います。
 
 
 ## Kubernetes

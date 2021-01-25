@@ -3,7 +3,7 @@ title: "Kubernetes入門の際に参考にした情報"
 emoji: "⚓"
 type: "idea"
 topics: ["Kubernetes"]
-published: false
+published: true
 ---
 
 ## これは何？

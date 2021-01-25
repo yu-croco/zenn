@@ -1,7 +1,7 @@
 ---
-title: "Kubernetes入門のために参考にした情報"
+title: "Kubernetes入門の際に参考にした情報"
 emoji: "⚓"
-type: "tech" # tech: 技術記事 / idea: アイデア
+type: "idea"
 topics: ["Kubernetes"]
 published: false
 ---
@@ -46,6 +46,8 @@ published: false
 
 
 ## AWS(EKS)
+Kubernetesに対する基礎的な知見を備えた上で、IAMとKubernetes側のRBACとの関係や、EKS側で何をどこまで自動でやってくれるのかを把握するのが重要かなぁと思いました。
+
 ### 公式
 - [Amazon EKS とは](https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/what-is-eks.html)
 - [Amazon EKSユーザーガイド](https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/eks-ug.pdf)

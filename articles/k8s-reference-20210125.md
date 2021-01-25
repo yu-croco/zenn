@@ -65,6 +65,10 @@ Kubernetesに対する基礎的な知見を備えた上で、IAMとKubernetes側
 - [TechWorld with Nana](https://www.youtube.com/channel/UCdngmbVKX1Tgre699-XLlUA)
     - 動画で図解つきの説明なので、軽く観ておくと全体像のキャッチアップに便利
 
+## 動画
+- [Amazon EKS Workshop](https://www.eksworkshop.com/)
+    - AWS公式が出しているEKSのハンズオンです
+    - Kubernetesの全体像はざっくり分かったけど、EKS使う際にこれってどうなんやろ？が動画で解説されています
 
 ## 所感
 Kubernetesを勉強して思ったこととしては、高度に抽象化されていながらも結局ちゃんと運用するには裏側の挙動やインフラの知見は必須だなと感じました。

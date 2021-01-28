@@ -42,6 +42,9 @@ Kubernetesが「どんなことを目的に生まれたのか」、またそれ�
 - [Run Kubernetes Production Environment on EC2 Spot Instances With Zero Downtime: A Complete Guide](https://medium.com/riskified-technology/run-kubernetes-on-aws-ec2-spot-instances-with-zero-downtime-f7327a95dea)
 - [Kubernetes: 詳解 Pods の終了](https://qiita.com/superbrothers/items/3ac78daba3560ea406b2)
 - [ゼロから始めるKubernetes Controller](https://speakerdeck.com/govargo/under-the-kubernetes-controller-36f9b71b-9781-4846-9625-23c31da93014)
+- [Kubeletから読み解くKubernetesのコンテナ管理の裏側/Kubelet & Containers](https://speakerdeck.com/bells17/kubelet-and-containers)
+- [SRE / DevOps / Kubernetes Weekly Reportまとめ#51(2021/1/17~1/22)](https://hakobiya.hatenablog.com/entry/2021/1/18/Weekly-Report-51)
+
 
 ### 動画
 - [【EKSWorkshop】EKSやkubernetes周辺を効率よく学ぶのにオススメなチュートリアル集](https://dev.classmethod.jp/articles/eks-workshop/)

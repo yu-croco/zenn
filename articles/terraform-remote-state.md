@@ -3,7 +3,7 @@ title: "Terraformのremote_stateについておさらい"
 emoji: "🎃"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Terraform"]
-published: false
+published: true
 ---
 
 Terraformのterraform_remote_stateを使ったので頭の整理を兼ねてまとめました。

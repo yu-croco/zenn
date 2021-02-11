@@ -3,7 +3,7 @@ title: "aws-authとかIRSAとか"
 emoji: "🛡️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Kubernetes", "EKS"]
-published: false
+published: true
 ---
 
 業務でEKSを使い始め、認証認可周りでハマった事が多かったので調べたことをまとめました。

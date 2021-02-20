@@ -28,7 +28,9 @@ Argo Workflowで `Workflows` 経由から実行したいがWorkflowを直接実�
 
 ### 内部実装をちょっと追ってみる
 
-この機能自体は https://github.com/argoproj/argo-workflows/blob/master/config/config.go#L363 で定義されています(ざっくり以下の感じ)。
+この機能自体は以下で定義されています(ざっくり以下の感じ)。
+
+https://github.com/argoproj/argo-workflows/blob/master/config/config.go#L363
 
 ```go
 type WorkflowRestrictions struct {
@@ -117,7 +119,7 @@ func (woc *wfOperationCtx) setStoredWfSpec() error {
 
 		woc.wf.Status.StoredWorkflowSpec = &mergedWf.Spec
 		woc.updated = true
-	} else if woc.controller.Config.WorkflowRestrictions.MustNotChangeSpec() { // ココ!!
+	} else if woc.controller.Config.WorkflowRestrictions.MustNotChangeSpec() { // ここで呼び出されている
 		wftHolder, err := woc.fetchWorkflowSpec()
 		if err != nil {
 			return err

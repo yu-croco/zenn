@@ -9,7 +9,7 @@ Argo Workflowの `templateReferencing` を触ってまとめてみました。
 
 ## templateReferencing
 ### 概要
-Argo Workflowで `Workflows` 経由から実行したいがWorkflowを直接実行させたくないケースがあると思います。 そんなときには`templateReferencing` を使うと簡単にWorkflowの直接実行を防げます。
+Argo Workflowで `TemplateRef` を使用していないWorkflowの実行を制限したいケースがあると思います。 そんなときには`templateReferencing` を使うと簡単にWorkflowの直接実行を防げます。
 [Workflow Restrictions](https://argoproj.github.io/argo-workflows/workflow-restrictions/) 曰く、templateReferencingには `Strict` と `Secure` があります。
 
 - Strict
@@ -250,7 +250,7 @@ GUIから見ても同じ感じでエラーになっています。
 
 ![](https://storage.googleapis.com/zenn-user-upload/7l7b8lt1975y66uh6y8s7jlkjkvr)
 
-一方で以下のWorkflowTemplateを実行すると、workflowが回り始めます。
+一方で以下のようにWorkflowTemplateを参照しているWorkflowはちゃんと実行されます。
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -272,9 +272,22 @@ spec:
         image: docker/whalesay
         command: [cowsay]
         args: ["{{inputs.parameters.message}}"]
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: workflow-template-hello-world
+spec:
+  entrypoint: whalesay-template
+  arguments:
+    parameters:
+      - name: message
+        value: "from workflow"
+  workflowTemplateRef:
+    name: workflow-template-submittable
 ```
 
-![](https://storage.googleapis.com/zenn-user-upload/kdqh20oemkcub7tq3whl8b35c405)
+![](https://storage.googleapis.com/zenn-user-upload/ibencxahfyknj5asup47osc63iao)
 
 ## まとめ
 - Argo WorkflowからWorkflowを直接実行させることを禁止したい場合には `templateReferencing` を使うとできそう。

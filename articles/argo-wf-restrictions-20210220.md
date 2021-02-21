@@ -7,8 +7,8 @@ published: true
 ---
 Argo Workflowの `templateReferencing` を触ってまとめてみました。
 
-## templateReferencing
-### 概要
+# templateReferencing
+## 概要
 Argo Workflowで `TemplateRef` を使用していないWorkflowの実行を制限したいケースがあると思います。 そんなときには`templateReferencing` を使うと簡単にWorkflowの直接実行を防げます。
 [Workflow Restrictions](https://argoproj.github.io/argo-workflows/workflow-restrictions/) 曰く、templateReferencingには `Strict` と `Secure` があります。
 
@@ -26,7 +26,7 @@ Argo Workflowで `TemplateRef` を使用していないWorkflowの実行を制�
 
 とのことで、 `Strict` に加えて、Workflow実行中にworkflowTemplateRefに変更があってもそれを受け付けないようです。
 
-### 内部実装をちょっと追ってみる
+## 内部実装をちょっと追ってみる
 
 この機能自体は以下で定義されています(ざっくり以下の感じ)。
 
@@ -61,7 +61,7 @@ func (req *WorkflowRestrictions) MustNotChangeSpec() bool {
 
 なるほど、 `MustUseReference` と `MustNotChangeSpec` のフラグとして使ってるんですね。
 
-### MustUseReference
+## MustUseReference
 この関数は以下で呼び出されています。
 https://github.com/argoproj/argo-workflows/blob/master/workflow/controller/operator.go#L3112
 
@@ -92,7 +92,7 @@ Workflowを実行する前に実行対象のWorkflowをセットするようで�
 `WorkflowTemplateRefが定義されていない` && `MustUseReferenceを定義している` 場合にはエラーとなる仕組みです。
 
 
-### MustNotChangeSpec
+## MustNotChangeSpec
 この関数は以下で呼び出されています。
 https://github.com/argoproj/argo-workflows/blob/master/workflow/controller/operator.go#L3146
 
@@ -140,7 +140,7 @@ func (woc *wfOperationCtx) setStoredWfSpec() error {
 この処理は正確に調査できていないのでコードを読んだ上での雰囲気ですが、`mergedWf.Spec.String() != woc.wf.Status.StoredWorkflowSpec.String()` のところで、Configの設定値と現在のコンテキストで持っている設定値が違う場合にはエラーを返すようにしています。
 
 
-## 導入方法
+# 導入方法
 [Workflow Restrictions](https://argoproj.github.io/argo-workflows/workflow-restrictions/)曰く、以下で設定できるらしいです。
 
 ```yaml
@@ -289,11 +289,11 @@ spec:
 
 ![](https://storage.googleapis.com/zenn-user-upload/ibencxahfyknj5asup47osc63iao)
 
-## まとめ
+# まとめ
 - Argo WorkflowからWorkflowを直接実行させることを禁止したい場合には `templateReferencing` を使うとできそう。
 - ドキュメントだけ読んでも具体的な処理は不明確だったりするので、内部実装を追っていくと理解が捗りそう。
 
-## 参考
+# 参考
 - [Workflow Restrictions](https://argoproj.github.io/argo-workflows/workflow-restrictions/)
 - [argoproj/argo-workflows](https://github.com/argoproj/argo-workflows)
 - [Workflow Templates](https://github.com/argoproj/argo-workflows/blob/master/docs/workflow-templates.md)

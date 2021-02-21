@@ -124,6 +124,9 @@ deny[msg] {
 }
 ```
 
+なお、Kubernetesのマニフェストに対するテストツールは他にも色々あるようです。
+[Validating Kubernetes YAML for best practice and policies](https://learnk8s.io/validating-kubernetes-yaml)などが参考になるかもしれません。
+
 # 参考
 - [open-policy-agent/gatekeeper](https://github.com/open-policy-agent/gatekeeper)
 - [GatekeeperによるKubernetesポリシの拡張](https://www.infoq.com/jp/news/2019/10/opa-gatekeeper-kubernetes/)

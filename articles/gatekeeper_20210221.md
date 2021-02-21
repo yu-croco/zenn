@@ -3,7 +3,7 @@ title: "Gatekeeper入門"
 emoji: "🥅"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Gatekeeper", "Conftest"]
-published: false
+published: true
 ---
 
 # イントロ

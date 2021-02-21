@@ -133,3 +133,4 @@ deny[msg] {
 - [Gatekeeper Introduction](https://open-policy-agent.github.io/gatekeeper/website/docs/)
 - [Conftest で CI 時に Rego で記述したテストを行う](https://amsy810.hateblo.jp/entry/2020/04/03/124913)
 - [Gatekeeper/conftestのRegoをDRYに管理する](https://hack.nikkei.com/blog/advent20201224/)
+- [Open Policy Agent / Gatekeeper 勉強会](https://speakerdeck.com/zoetrope/gatekeeper-mian-qiang-hui)

@@ -3,7 +3,7 @@ title: "同じAZ内の複数subnetからECR PrivateLinkを利用する方法"
 emoji: "🔌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AWS", "ECR", "PrivateLink"]
-published: false
+published: true
 ---
 
 # これは何？

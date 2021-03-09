@@ -6,7 +6,7 @@ topics: ["ArgoWorkflows"]
 published: true
 ---
 
-Argo Workflowで `step A` のoutputsで出力したListを後続の `step B` で並列処理したいといったケースを実現したかったので調べてみました。
+Argo Workflowで `step A` のoutputsで出力したListを後続の `step B` で並列処理（単一の `step B` の内部で並列化するのではなく、Listの個々の値毎に `step B` を並列処理）したいといったケースを実現したかったので調べてみました。
 
 
 # 結論

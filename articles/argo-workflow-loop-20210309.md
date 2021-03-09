@@ -3,7 +3,7 @@ title: "Argo WorkflowsでstepのOutputsを使って並行処理をしてみる"
 emoji: "📌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ArgoWorkflows"]
-published: false
+published: true
 ---
 
 Argo Workflowで `step A` のoutputsで出力したListを後続の `step B` で並列処理したいといったケースを実現したかったので調べてみました。

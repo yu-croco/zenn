@@ -3,7 +3,7 @@ title: "Golangのslice header入門"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Golang"]
-published: false
+published: true
 ---
 
 Golangのsliceを関数の引数として渡した際の挙動が良く分からなかったので調べてみました。

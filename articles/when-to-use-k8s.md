@@ -2,7 +2,7 @@
 title: "ぼくのかんがえるKubernetes(EKS)のツラミと理想のターゲット"
 emoji: "🌊"
 type: "idea" # tech: 技術記事 / idea: アイデア
-topics: ["Kubernetes"]
+topics: ["Kubernetes", "EKS"]
 published: false
 ---
 

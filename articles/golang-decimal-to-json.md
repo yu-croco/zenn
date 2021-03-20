@@ -3,7 +3,7 @@ title: "GolangでDecimalをJSON化した際にStringになる問題に対処す�
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Golang"]
-published: false
+published: true
 ---
 
 # 問題

@@ -43,7 +43,7 @@ var MarshalJSONWithoutQuotes = false
 ```
 
 # やってみよう
-必要な箇所で毎回設定してもいいですが、 init functionに設定を混ぜるのが便利かと思います。
+必要な箇所で毎回設定してもいいですが、 init functionに設定を混ぜるのが便利かと思います（`decimal.Decimal` を使っているstructと同じパッケージに定義するのが良さそう？）。
 *init functionについては [The init Function](https://tutorialedge.net/golang/the-go-init-function/) が参考になりました。
 
 ```go

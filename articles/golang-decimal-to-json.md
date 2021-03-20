@@ -43,8 +43,7 @@ var MarshalJSONWithoutQuotes = false
 ```
 
 # やってみよう
-必要な箇所で毎回設定してもいいですが、 init functionに設定を混ぜるのが便利かと思います（`decimal.Decimal` を使っているstructと同じパッケージに定義するのが良さそう？）。
-*init functionについては [The init Function](https://tutorialedge.net/golang/the-go-init-function/) が参考になりました。
+素直に `MarshalJSONWithoutQuotes = true` を設定するとdecimal型のデータをnumberとしてJSON化できました。
 
 ```go
 import (
@@ -53,18 +52,33 @@ import (
     "github.com/shopspring/decimal"
 )
 
-func init() {
-    decimal.MarshalJSONWithoutQuotes = true
-}
-
 type User struct {
     Score decimal.Decimal `json:"score"`
 }
 
 func main() {
+    decimal.MarshalJSONWithoutQuotes = true
+
     score, _ := decimal.NewFromString("136.02")
     u := User{Score: score}
 
     jsonUser, _ := json.Marshal(u) // // こんな感じになる {"score":136.02}
 }
+```
+
+上記のようにmain関数に書いたりするのはちょっとアレなので、init functionに設定を混ぜるのが便利かと思います。
+*init functionについては [The init Function](https://tutorialedge.net/golang/the-go-init-function/) が参考になりました。
+
+個人的には `decimal.Decimal` を使っているstructと同じパッケージに定義するのが良さそうな気がしています(例えば以下の感じ)。
+
+```
+.
+├── go.mod
+├── go.sum
+├── main.go
+└── pkg
+    └── model
+        └── user
+            ├── init.go // ここで設定
+            └── user.go
 ```

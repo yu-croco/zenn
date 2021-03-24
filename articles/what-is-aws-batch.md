@@ -199,5 +199,13 @@ resource "aws_batch_job_queue" "test_queue" {
 }
 ```
 
+# TIPS
+- JobがRUNNABLEのまま進まない問題は以下を参考にすると良さそう
+    - [AWS Batch ジョブが RUNNABLE ステータスで止まっているのはなぜですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/batch-job-stuck-runnable-status/)
+    - [Troubleshooting AWS Batch](https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#job_stuck_in_runnable)
+- コンピューティング環境のインスタンスタイプはあとから変えられない
+    - [[AWS Batch]Terraformでコンピューティング環境のインスタンスタイプを後から変更する苦肉の策](https://n-s.tokyo/2019/03/awsbatch-change-instance-type/)
+
 # 参考
 - [AWS再入門ブログリレー AWS Batch編](https://dev.classmethod.jp/articles/relay_looking_back_aws-batch/)
+- [AWS Batch とは何か](https://qiita.com/pottava/items/d9886b2e8835c5c0d30f)

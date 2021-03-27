@@ -3,7 +3,7 @@ title: "AWS Batchに入門してみた"
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AWS","AWSBatch"]
-published: false
+published: true
 ---
 # これはなに？
 大きめのバッチ処理を動かすためにAWS Batchに入門したので、その際に調べたことをまとめました。主に環境構築周りについてまとめています。

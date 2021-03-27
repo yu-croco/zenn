@@ -2,7 +2,7 @@
 title: "AWS Batchに入門してみた"
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["AWS","AWSBatch"]
+topics: ["AWS","AWSBatch","Terraform"]
 published: true
 ---
 # これはなに？

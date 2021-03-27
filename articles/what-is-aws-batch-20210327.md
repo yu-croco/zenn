@@ -223,28 +223,27 @@ resource "aws_batch_job_queue" "this" {
 ### Compute環境からECS service endpointへアクセスできてない
 以下の感じでコンピューティング環境からECS service endpointへアクセスが必要になるらしい。
 
-> No internet access for compute resources
->  Compute resources need access to communicate with the Amazon ECS service endpoint.
->  This can be through an interface VPC endpoint or through your compute resources having public IP addresses.
+> **No internet access for compute resources**
+>  Compute resources need access to communicate with the Amazon ECS service endpoint. This can be through an interface VPC endpoint or through your compute resources having public IP addresses.
 >  For more information about interface VPC endpoints, see Amazon ECS Interface VPC Endpoints (AWS PrivateLink) in the Amazon Elastic Container Service Developer Guide.
 >  If you do not have an interface VPC endpoint configured and your compute resources do not have public IP addresses, then they must use network address translation (NAT) to provide this access. For more information, see NAT Gateways in the Amazon VPC User Guide. For more information, see Tutorial: Creating a VPC with Public and Private Subnets for Your Compute Environments.
 
 対処法としては以下の3種類。
-個人的には、`1-2. ECS Interface VPC Endpoints (AWS PrivateLink)を使用する` が良い気がしています。ECRなども使う場合にはそちらもPrivateLink用の設定をするのが良いと思うので、こちらと合わせてやってしまうのが楽かなと思います。
+個人的には、`2. ECS Interface VPC Endpoints (AWS PrivateLink)を使用する` が良い気がしています。ECRなども使う場合にはそちらもPrivateLink用の設定をするのが良いと思うので、こちらと合わせてやってしまうのが楽かなと思います。
 
-#### 1-1. コンピューティング環境が配置されているsubnetでパブリック IPv4 アドレスの自動割り当てを許可する
+#### 1. コンピューティング環境が配置されているsubnetでパブリック IPv4 アドレスの自動割り当てを許可する
 [AWS Batch ジョブが RUNNABLE ステータスで止まっているのはなぜですか?](https://aws.amazon.com/jp/premiumsupport/knowledge-center/batch-job-stuck-runnable-status/) にある以下の説明箇所がそれに該当するかと思います。
 
 > 6. コンピューティング環境のサブネットごとに、[説明] を選択し、[パブリック IPv4 アドレスの自動割り当て] プロパティの値を確認します。
 
-#### 1-2. ECS Interface VPC Endpoints (AWS PrivateLink)を使用する
+#### 2. ECS Interface VPC Endpoints (AWS PrivateLink)を使用する
 [Amazon ECS interface VPC endpoints (AWS PrivateLink)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/vpc-endpoints.html)を参考に、以下3つのVPC Endpoint(PrivateLink)を建てると、Internetを経由せずにAWS内部の通信でECS service endpointへアクセスが可能となります。
 
 - com.amazonaws.region.ecs-agent
 - com.amazonaws.region.ecs-telemetry
 - com.amazonaws.region.ecs
 
-#### 1-3. Nat Gatewayを使用する
+#### 3. Nat Gatewayを使用する
 [Tutorial: Creating a VPC with Public and Private Subnets for Your Compute Environments](https://docs.aws.amazon.com/batch/latest/userguide/create-public-private-vpc.html)を参考にNAT Gateway経由でECS service endpointへアクセスする感じだそうです。
 結局はNAT Gatewayを置くだけではなく、public subnetで `auto-assigned public IPv4 addresses` をenableにしないといけない感じっぽい（ちゃんと調べてない）？？
 
@@ -258,6 +257,7 @@ resource "aws_batch_job_queue" "this" {
   - 内部で他のサービスを使っていることもあり、一通り動くようにするために準備するリソースが多い
   - 小さなデバッグが難しい（全部用意してから始めて問題が見つかる..）
 - public subnet前提の記事ばかりで、`RUNNABLE`でのハマり解消に苦労した..
+- 細かいところで癖がある
 
 # 参考
 - [Resource: aws_batch_compute_environment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/batch_compute_environment)

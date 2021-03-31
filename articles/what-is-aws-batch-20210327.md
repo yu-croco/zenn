@@ -77,12 +77,6 @@ data "aws_iam_policy_document" "assume_to_aws_batch" {
   }
 }
 
-// ECRからPullするための権限もろもろ
-resource "aws_iam_role_policy_attachment" "ecs_task_AmazonEC2ContainerRegistryReadOnly" {
-  role       = aws_iam_role.job_definition.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-}
-
 // terraform applyの度に差分が出てversion更新されるので、運用のベスプラはちょっとわからない..
 resource "aws_batch_job_definition" "job_definition" {
   name = "aws-batch-job-definition"
@@ -103,6 +97,8 @@ data "template_file" "job-definition" {
  https://docs.aws.amazon.com/ja_jp/batch/latest/userguide/compute_environments.html#managed_compute_environments
 */
 resource "aws_batch_compute_environment" "aws-batch-computing-environment" {
+  // ユニークである必要があるため、create_before_destroyのlife cycleで先に作成される
+  // 新しいリソース名が既存のリソース名とかぶらないようにする必要がある。
   compute_environment_name = "aws-batch-compute-env"
   service_role = aws_iam_role.aws-batch-service-role.arn
   type = "MANAGED"
@@ -115,11 +111,12 @@ resource "aws_batch_compute_environment" "aws-batch-computing-environment" {
     allocation_strategy = "BEST_FIT"
     instance_role = aws_iam_instance_profile.aws-batch-instance-role.arn
     instance_type = ["c4.large"]
-    max_vcpus = 256
+    max_vcpus = 32
     min_vcpus = 0
     security_group_ids = [aws_security_group.aws_batch.id]
     subnets = var.subnets
     type = "EC2"
+    // こうすることでAWS側での推奨AMIが更新されると自動でcompute environmentがreplaceされる
   }
 
   // 削除時に先にroleが削除され、コンピューティング環境の削除でスタックする。根本的な対処はちょっと謎..
@@ -140,6 +137,7 @@ resource "aws_iam_role" "aws-batch-instance-role" {
   assume_role_policy = data.aws_iam_policy_document.instance-assume-role.json
 }
 
+// ここにECRやCloudWatch周りの権限は含まれている
 resource "aws_iam_role_policy_attachment" "aws-batch-instance-role" {
   role = aws_iam_role.aws-batch-instance-role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
@@ -246,6 +244,11 @@ resource "aws_batch_job_queue" "this" {
 #### 3. Nat Gatewayを使用する
 [Tutorial: Creating a VPC with Public and Private Subnets for Your Compute Environments](https://docs.aws.amazon.com/batch/latest/userguide/create-public-private-vpc.html)を参考にNAT Gateway経由でECS service endpointへアクセスする感じだそうです。
 結局はNAT Gatewayを置くだけではなく、public subnetで `auto-assigned public IPv4 addresses` をenableにしないといけない感じっぽい（ちゃんと調べてない）？？
+
+
+## Compute Environmentは基本的にReplaceされる
+コンピューティング環境の仕様上、cpuとサービスロール以外の変更はreplace扱いになる。 それに加えてJob Queueはコンピューティング環境に紐づく必要があるため、コンピューティング環境がreplaceされると落ちてしまう。
+そのため、コンピューティング環境で `create_before_destroy = true` のlifecycleを入れることでJob Queueに紐づくコンピューティング環境を確実に確保する
 
 # その他TIPS
 - コンピューティング環境のインスタンスタイプはあとから変えられない

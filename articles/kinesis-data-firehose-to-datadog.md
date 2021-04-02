@@ -3,7 +3,7 @@ title: "Kinesis Data FirehoseでDatadogへお手軽データ転送"
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AWS","CloudWatchLogs","Kinesis"]
-published: false
+published: true
 ---
 
 ログの集約先をDatadogにしたいため、AWSから出てくるログをDatadogへ送る事になった際に調べたことをまとめました。

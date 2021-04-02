@@ -1,5 +1,5 @@
 ---
-title: "AWS CloudWatchLogsをDatadogへお手軽転送してみる"
+title: "Kinesis Data FirehoseでDatadogへお手軽データ転送"
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AWS","CloudWatchLogs","Kinesis"]
@@ -78,3 +78,6 @@ resource "aws_kinesis_firehose_delivery_stream" "send_to_datadog" {
 # 余談
 Fargateタイプのリソースを扱っている場合には、side carでdd-agentを動かすのが一番楽ではないかと思います。
 *秘密情報は[Systems Manager パラメータストアを使用した機密データの指定](https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/userguide/specifying-sensitive-data-parameters.html)を参考に、パラメータストア経由でデータを取得するようにするのが良いと思います。
+
+# 雑感
+今まではLambdaを書くことがほぼ必須だったので非常に楽で助かった

@@ -3,7 +3,7 @@ title: "EKS Managed Node GroupでSpot Instanceを使うために調べたこと�
 emoji: "🦾"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["EKS", "AWS","Terraform"]
-published: false
+published: true
 ---
 
 # これは何？

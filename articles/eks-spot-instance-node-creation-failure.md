@@ -1,5 +1,5 @@
 ---
-title: "[🍊]EKS MNGでSpot Instanceを使用してNodeCreationFailureとなった調査メモ"
+title: "[🍊]EKS MNGでSpot Instanceを使用してNodeCreationFailureとなった際の調査メモ"
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["EKS","SpotInstance"]

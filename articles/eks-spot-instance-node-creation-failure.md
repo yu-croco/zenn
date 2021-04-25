@@ -3,7 +3,7 @@ title: "[🍊]EKS MNGでSpot Instanceを使用してNodeCreationFailureとなっ
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["EKS","SpotInstance"]
-published: false
+published: true
 ---
 
 # これは何？

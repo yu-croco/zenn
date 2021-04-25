@@ -15,7 +15,8 @@ TerraformでEKS Managed Node GroupでSpot Instanceを利用する際に、時々
 
 # 前提
 - On-DemandのEC2 Instanceでは発生しない
-
+- 1つのsubnetに複数のMNGが配置されている
+- subnetのCIDRブロックは `/24` なので251ipある
 
 # 事象
 Terraformで `aws_eks_node_group` をSpot Instanceとして起動しようとした際に、以下のエラーが出ることがある。

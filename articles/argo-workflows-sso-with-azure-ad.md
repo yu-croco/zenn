@@ -7,7 +7,7 @@ published: true
 ---
 
 # コレは何？
-Argo Workflowsに対してAzure AD経由でSSOするために調べたことをまとめました。
+Argo Workflowsに対してAzure AD経由でSSOする手順をまとめました。
 
 
 ## 1. Azure AD Applicationを登録

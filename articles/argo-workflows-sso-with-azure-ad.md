@@ -3,7 +3,7 @@ title: "Argo WorkflowsでSSO + RBACを使ってみる"
 emoji: "😊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ArgoWorkflows", "AzureAD"]
-published: false
+published: true
 ---
 
 # コレは何？

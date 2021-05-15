@@ -3,7 +3,7 @@ title: "Kubernetesのresources管理入門"
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["kubernetes"]
-published: false
+published: true
 ---
 
 # コレは何？

@@ -1,5 +1,5 @@
 ---
-title: "Kubernetesのresources管理"
+title: "Kubernetesのresources管理入門"
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["kubernetes"]
@@ -10,12 +10,11 @@ published: false
 Kubernetesのリソース管理を触ったので調べたことをまとめました。
 
 # kubernetesでのリソース管理
-Deploymentなどを経由してPodを起動する際に、個々のPodに適したリソース(CPU, memory)を指定したくなります。
-あるDeploymentで作成されるPodはアクセス負荷が低いため低めのスペックを設定したり、あるCronJobで作成されるPodに対しては大きめのデータを処理するために高いスペックを設定したりといった具合です。
-
+あるDeploymentで作成されるPodはアクセス負荷が低いため低めのスペックを設定したり、あるCronJobで作成されるPodに対しては大きめのデータを処理するために高いスペックを設定したりといった具合に、個々のPodに適したリソース(CPU, memory)を指定したくなります。
+そんなリソース管理のための設定として `resources` があります。
 
 # resources
-リソース指定には `limits` と `requests` がああります。
+リソース指定には `limits` と `requests` があります。
 `limits` はコンテナに指定できる最低限のリソースのことであり、 `requests` はコンテナに指定できる最大限のリソースのことです。
 
 以下のように `spec.containers[].resources` に指定します。
@@ -54,7 +53,7 @@ spec:
 > Kuberenetesにおける1つのCPUは、クラウドプロバイダーの1 vCPU/コアおよびベアメタルのインテルプロセッサーの1 ハイパースレッドに相当します。
 
 例えば2 vCPUのEC2インスタンスのスペックをフルで使いたい場合には `cpu: 2` と記載します。
-1 vCPU分のリソースを割り当てたい場合には `cpu: 1` または `cpu: 1024m` と記載します。
+1 vCPU分のリソースを割り当てたい場合には `cpu: 1` または `cpu: 1000m` と記載します(Kubernetesでは1cpu = 1000m)。
 
 
 ## Memory
@@ -68,6 +67,16 @@ requestsとlimitで大きな乖離があるPodがたくさんある場合には�
 # resources.limitsを超えた場合
 `resources.limits.memory` の値を超えた場合には、OOM Killerにより該当のPodは強制終了されます。
 `resources.limits.cpu` の値を超えた場合にはPodの強制終了は発生しません。
+
+## CPUについて
+CPUのリソース制限に関してはスロットリングというものがあるので、kubernetesのメトリクスを見つつ設定していくのが良さそうです。
+
+詳細はこちらが大変参考になりました。
+
+- [Understanding resource limits in kubernetes: cpu time](https://medium.com/@betz.mark/understanding-resource-limits-in-kubernetes-cpu-time-9eff74d3161b)
+- [Understanding CPU throttling in Kubernetes to improve application performance](https://speakerdeck.com/daikurosawa/understanding-cpu-throttling-in-kubernetes-to-improve-application-performance-number-k8sjp)
+- [Kubernetes No CPU Limit: Save yourself from setting up CPU](https://amixr.io/blog/what-wed-do-to-save-from-the-well-known-k8s-incident/)
+- [Resource Quality of Service in Kubernetes](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/node/resource-qos.md)
 
 
 # QoS class
@@ -88,22 +97,20 @@ PodがどのQoS classであるかを確認したい場合には、 `kubectl desc
 resourcesを指定しない場合、Podは使用できる限りのリソース（≒ nodeのリソース）を利用します。
 ただし `LimitRange` を指定している場合にはそれが適用されます。
 
-kubeletがPodに指定された
 
 # ResourceQuota
-ResourceQuotaはnamespace単位で利用可能な総リソースを設定できる。
+ResourceQuotaを使うことでnamespace単位で利用可能な総リソースを設定できます（Podなどの個々のリソースではなく特定のnamespaceに対するリソースの総量を制限する）。
 *詳細は[リソースクォータ](https://kubernetes.io/ja/docs/concepts/policy/resource-quotas/)を参照して下さい。
 
-# LimitRange
+# Limit Range
+namespace単位でのPod/containerのcpu/memoryやpvcのstorageのリソース制限を設定できます。
+*詳細は[Limit Range](https://kubernetes.io/ja/docs/concepts/policy/limit-range/)を参照して下さい。
 
+# 雑感
+resourcesの設定はkubernetesの出すメトリクスを見つつ設定（かつ、運用を通して見直していく）していくのが良さそう。
 
-# その他
-`resources.limits.cpu` を指定することでCPUのスロットリングが発生してパフォーマンス低下が起こることがあるそうです。
-詳細はこちらが大変参考になりました。[Understanding CPU throttling in Kubernetes to improve application performance](https://speakerdeck.com/daikurosawa/understanding-cpu-throttling-in-kubernetes-to-improve-application-performance-number-k8sjp)
 
 # 参考
 - [Kubernetesのリソースの基本を今度こそ理解する](https://blog.mosuke.tech/entry/2020/03/31/kubernetes-resource/)
 - [コンテナのリソース管理](https://kubernetes.io/ja/docs/concepts/configuration/manage-resources-containers/)
 - [コンテナおよびPodへのCPUリソースの割り当て](https://kubernetes.io/ja/docs/tasks/configure-pod-container/assign-cpu-resource/)
-- [Pod CPU Throttling](https://stackoverflow.com/questions/54099425/pod-cpu-throttling)
-- [Kubernetes No CPU Limit: Save yourself from setting up CPU](https://amixr.io/blog/what-wed-do-to-save-from-the-well-known-k8s-incident/)

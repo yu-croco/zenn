@@ -1,7 +1,7 @@
 ---
 title: "Argo CDにOSSコントリビュートしたときの流れ"
 emoji: "🎊"
-type: "tech" # tech: 技術記事 / idea: アイデア
+type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["ArgoCD", "OSS"]
 published: true
 ---

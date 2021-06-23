@@ -3,11 +3,11 @@ title: "DatadogのKubernetes State Metrics Coreに関する簡単なまとめ"
 emoji: "👻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Kubernetes","Datadog","kubeStateMetrics"]
-published: false
+published: true
 ---
 
 # コレは何？
-Datadogで一部のメトリクス（`kubernetes_state.container.cpu_requested`など）が取得できていないため調べたら `Kubernetes State Metrics Core` にたどり着いたのでそれに関する簡単なまとめ。
+KubernetesのメトリクスをDatadogに流しているのだが、 一部のメトリクス（`kubernetes_state.container.cpu_requested`など）がDatadogで取得できていないため調べたら `Kubernetes State Metrics Core` にたどり着いたのでそれに関する簡単なまとめ。
 
 # Kubernetes State Metrics Core is 何？
 [Kubernetes State Metrics Core](https://docs.datadoghq.com/integrations/kubernetes_state_core/?tab=helm)によると、
@@ -36,3 +36,5 @@ datadog:
   # v1.0はもう不要なのでdisableして良さそう
   kubeStateMetricsEnabled: false
 ```
+
+以上

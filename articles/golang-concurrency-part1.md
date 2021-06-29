@@ -3,7 +3,7 @@ title: "Golang並行処理入門part1"
 emoji: "🥷"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Go", "並行処理"]
-published: false
+published: true
 ---
 
 # コレは何？

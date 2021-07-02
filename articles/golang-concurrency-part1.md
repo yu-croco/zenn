@@ -9,6 +9,9 @@ published: true
 # コレは何？
 Golangの並行処理に入門したときのメモです。普段はHCLやyamlを中心に扱っているため、久しぶりにGolangのお勉強がてらまとめました。
 
+part2は以下です。
+https://zenn.dev/nameless_gyoza/articles/golang-concurrency-part2
+
 # 前提
 - `並行処理 is 何？`は書いてない
 - Golangでよく出てくる並行処理(主にsync.WaitGroupとchannel)についてサラッと書いてる

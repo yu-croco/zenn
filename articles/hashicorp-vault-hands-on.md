@@ -3,7 +3,7 @@ title: "HashiCorp Vault 入門"
 emoji: "👋"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["HashiCorp","Vault"]
-published: false
+published: true
 ---
 
 # これは何？
